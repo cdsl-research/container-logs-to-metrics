@@ -12,9 +12,9 @@
 ## プログラムの概要
 
 ### `log_summary.py`
-**説明**:このファイルをPythonで動かすことで、Elasticsearchのbeats indexにあるログをコンテナ名別に5分ごとに時間帯を分けて出力される。出力されるログはプログラム実行時の１時間前から現在時刻までのログである。
-- 入力は，Elasticsearchのbeats indexのログである。出力はプログラム実行時の１時間前から現在時刻までのログである。
-- 出力では、ログの時間帯、コンテナ名、ログ件数、5分前のログ件数からの変化を出力する。
+**説明**:このファイルをPythonで動かすことで、Elasticsearchのbeats indexにあるログをコンテナ名別に5分ごとに時間帯を分けて出力されます。出力されるログはプログラム実行時の１時間前から現在時刻までのログです。
+- 入力は，Elasticsearchのbeats indexのログである。出力はプログラム実行時の１時間前から現在時刻までのログです。
+- 出力では、ログの時間帯、コンテナ名、ログ件数、5分前のログ件数からの変化を出力します。
 **使い方**:
 ```
 c0a22166@c0a22166:~/teian$ source venv/bin/activate
@@ -394,8 +394,8 @@ c0a22166@c0a22166:~/teian$ source venv/bin/activate
 2025-07-11 01:40,watch-active,32,-203
 ```
 **注意**
-- elasticserchモジュールをインストールする必要があります
-- もし、インストールされていない場合は下記のコマンドを入力してください
+- elasticserchモジュールをインストールする必要があります。
+- インストールされていない場合は下記のコマンドを入力して、コマンドを実行して下さい。
 ```
 # 仮想環境の作成
 python3 -m venv venv
@@ -405,7 +405,4 @@ source venv/bin/activate
 
 # elasticsearchパッケージのインストール
 pip install elasticsearch
-
-# プログラムの実行
-python log_summary.py
 ``` 
