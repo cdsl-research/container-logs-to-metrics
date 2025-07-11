@@ -17,6 +17,7 @@
 - 出力では、ログの時間帯、コンテナ名、ログ件数、5分前のログ件数からの変化を出力する。
 **使い方**:
 ```
+c0a22166@c0a22166:~/teian$ source venv/bin/activate
 (venv) c0a22166@c0a22166:~/teian$ python3 log_summary.py
 ✅ ログ検索期間: 2025-07-11 00:40:42 から 2025-07-11 01:40:42
 ✅ Elasticsearch (192.168.100.71:30092, Index: beats-*) からログを取得中...
@@ -24,7 +25,7 @@
 ✅ 集計が完了しました → log_summary.csv
 (venv) c0a22166@c0a22166:~/teian$ 
 ```
-- **実行結果**
+**実行結果**
 ```
 時間帯,コンテナ名,ログ件数,前時間帯からの変化
 2025-07-11 00:40,author-app-container,497,-
@@ -392,3 +393,19 @@
 2025-07-11 01:40,vmware-exporter,1173,-7287
 2025-07-11 01:40,watch-active,32,-203
 ```
+**注意**
+- elasticserchモジュールをインストールする必要があります
+- もし、インストールされていない場合は下記のコマンドを入力してください
+```
+# 仮想環境の作成
+python3 -m venv venv
+
+# 仮想環境の有効化
+source venv/bin/activate
+
+# elasticsearchパッケージのインストール
+pip install elasticsearch
+
+# プログラムの実行
+python log_summary.py
+``` 
