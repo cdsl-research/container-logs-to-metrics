@@ -396,7 +396,7 @@ c0a22166@c0a22166:~/teian$ source venv/bin/activate
 ```
 **注意**
 - elasticserchモジュールをインストールする必要があります。
-- インストールされていない場合は下記のコマンドを入力して、コマンドを実行して下さい。
+  - インストールされていない場合は下記のコマンドを入力して、コマンドを実行して下さい。
 ```
 # 仮想環境の作成
 python3 -m venv venv
@@ -406,4 +406,22 @@ source venv/bin/activate
 
 # elasticsearchパッケージのインストール
 pip install elasticsearch
-``` 
+```
+- 集計したいログのindexを変更するには、log_summary.pyの以下の部分を変更してください。（log_summary.pyの14行目）
+  - 'beats-*'の部分を変更することで集計するindexを変更することができます。
+```
+ES_INDEX_PATTERN = 'beats-*'
+```
+- 集計の期間を変更するには、log_summary.pyの以下の部分を変更してください。（log_summary.pyの22行目）
+  - ()の中をweek=1にすることで1週間、minutes=30にすることで30分間というように変更できます。
+```
+start_time = end_time - timedelta(hours=1)
+```
+- 集計の頻度を変更するには、log_summary.pyの以下の部分を変更してください。（log_summary.pyの88、89行目）
+  - minute = timestamp.minuteの状態だと1分ごと集計されます。
+  - minute = (timestamp.minute // 15) * 15にすることで15分ごとに集計されます。
+  - hour = (timestamp.hour // 2) * 2にすることで2時間ごとに集計されます。
+```
+minute = (timestamp.minute // 5) * 5
+rounded_time = timestamp.replace(minute=minute, second=0, microsecond=0)
+```
